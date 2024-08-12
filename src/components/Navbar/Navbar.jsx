@@ -1,9 +1,11 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import { IoMdSearch } from "react-icons/io";
+import { IoLogIn } from "react-icons/io5";
 import { FaCaretDown, FaMoon, FaSun } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
-import PropTypes from 'prop-types';
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const MenuLinks = [
   { id: 1, name: "Home", link: "/#" },
@@ -16,10 +18,19 @@ const DropdownLinks = [
   { id: 2, name: "Best Selling", link: "/#" },
   { id: 3, name: "Top Rated", link: "/#" },
 ];
-const Navbar = ({handleOrderPopup}) => {
+const Navbar = ({ handleOrderPopup, setShowLogin }) => {
   const [darkMode, setDarkMode] = useState(false);
 
   const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    if (darkMode) {
+      document.documentElement.classList.remove("dark");
+    } else {
+      document.documentElement.classList.add("dark");
+    }
+  };
+
+  const toggleDarkModeS = () => {
     setDarkMode(!darkMode);
     if (darkMode) {
       document.documentElement.classList.remove("dark");
@@ -42,7 +53,7 @@ const Navbar = ({handleOrderPopup}) => {
               href="#"
               className="text-primary font-semibold tracking-widest text-2xl uppercase sm:text-3xl"
             >
-              LEOSHOP
+              FUHI
             </a>
             {/* Menu items */}
             <div className="hidden sm:block">
@@ -71,9 +82,11 @@ const Navbar = ({handleOrderPopup}) => {
                   </a>
                   {/* Dropdown Links */}
                   <div>
-                    <ul className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 shadow-lg rounded-md py-2 opacity-0 
+                    <ul
+                      className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 shadow-lg rounded-md py-2 opacity-0 
                     group-hover:opacity-100 
-                    transition-opacity duration-200">
+                    transition-opacity duration-200"
+                    >
                       {DropdownLinks.map((data) => (
                         <li
                           key={data.id}
@@ -101,12 +114,18 @@ const Navbar = ({handleOrderPopup}) => {
               <input
                 type="text"
                 placeholder="Search"
-                className="search-bar px-4 py-2 border rounded-full dark:bg-gray-800 dark:text-white dark:border-gray-700"
+                className="search-bar px-5 py-2 border rounded-full dark:bg-gray-800 dark:text-white dark:border-gray-700"
               />
               <IoMdSearch className="text-xl text-gray-600 group-hover:text-primary dark:text-gray-400 absolute top-1/2 transform -translate-y-1/2 right-3 duration-200" />
             </div>
+
+            {/* <Link to="/"> */}
             <div>
-              <button className="relative p-3" onClick={handleOrderPopup}>
+              <button
+                className="relative p-3"
+                // onClick={handleOrderPopup}
+                href="#Cart"
+              >
                 <FaShoppingCart className="text-xl text-gray-600 dark:text-gray-400" />
                 <div
                   className="w-4 h-4 bg-red-500 text-white rounded-full absolute
@@ -116,6 +135,7 @@ const Navbar = ({handleOrderPopup}) => {
                 </div>
               </button>
             </div>
+            {/* </Link> */}
             {/* Dark Mode */}
 
             <button
@@ -128,6 +148,20 @@ const Navbar = ({handleOrderPopup}) => {
                 <FaMoon className="text-gray-800 dark:text-gray-200" />
               )}
             </button>
+
+            {/* Login */}
+            <div>
+              <button
+                className="relative p-1"
+                onClick={() => setShowLogin(true)}
+              >
+                <IoLogIn className="text-xl text-gray-600 dark:text-gray-400" />
+                <div
+                  className="w-4 h-4 text-white rounded-full absolute
+            top-0 right-0 flex items-center justify-center text-xs"
+                ></div>
+              </button>
+            </div>
           </div>
         </div>
       </div>
