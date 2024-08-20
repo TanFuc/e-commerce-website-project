@@ -1,15 +1,18 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
+import { Routes, Route, Link } from "react-router-dom";
 import { IoMdSearch } from "react-icons/io";
 import { IoLogIn } from "react-icons/io5";
 import { FaCaretDown, FaMoon, FaSun } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import Cart from "../Cart/Cart";
+import Home from "../Home/Home";
+import MiniCart from "../MiniCart/MiniCart";
 
 const MenuLinks = [
-  { id: 1, name: "Home", link: "/#" },
-  { id: 2, name: "Shop", link: "/#shop" },
+  { id: 1, name: "Home", link: "/" },
+  { id: 2, name: "Shop", link: "/shop" },
   { id: 3, name: "About", link: "/#about" },
   { id: 4, name: "Blogs", link: "/#blog" },
 ];
@@ -18,19 +21,10 @@ const DropdownLinks = [
   { id: 2, name: "Best Selling", link: "/#" },
   { id: 3, name: "Top Rated", link: "/#" },
 ];
-const Navbar = ({ handleOrderPopup, setShowLogin }) => {
+const Navbar = ({ handleOrderPopup, handleLoginPopup }) => {
   const [darkMode, setDarkMode] = useState(false);
 
   const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    if (darkMode) {
-      document.documentElement.classList.remove("dark");
-    } else {
-      document.documentElement.classList.add("dark");
-    }
-  };
-
-  const toggleDarkModeS = () => {
     setDarkMode(!darkMode);
     if (darkMode) {
       document.documentElement.classList.remove("dark");
@@ -56,16 +50,17 @@ const Navbar = ({ handleOrderPopup, setShowLogin }) => {
               FUHI
             </a>
             {/* Menu items */}
+
             <div className="hidden sm:block">
               <ul className="flex items-center gap-4">
                 {MenuLinks.map((data) => (
                   <li key={data.id}>
-                    <a
-                      href={data.link}
+                    <Link
+                      to={data.link}
                       className="inline-block px-4 font-semibold text-gray-500 hover:text-black dark:hover:text-white duration-200"
                     >
                       {data.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
                 {/* Dropdown */}
@@ -123,15 +118,16 @@ const Navbar = ({ handleOrderPopup, setShowLogin }) => {
             <div>
               <button
                 className="relative p-3"
-                // onClick={handleOrderPopup}
+                onClick={handleOrderPopup}
                 href="#Cart"
+                id="miniCart"
               >
                 <FaShoppingCart className="text-xl text-gray-600 dark:text-gray-400" />
                 <div
                   className="w-4 h-4 bg-red-500 text-white rounded-full absolute
             top-0 right-0 flex items-center justify-center text-xs"
                 >
-                  4
+                  0
                 </div>
               </button>
             </div>
@@ -151,10 +147,7 @@ const Navbar = ({ handleOrderPopup, setShowLogin }) => {
 
             {/* Login */}
             <div>
-              <button
-                className="relative p-1"
-                onClick={() => setShowLogin(true)}
-              >
+              <button className="relative p-1" onClick={handleLoginPopup}>
                 <IoLogIn className="text-xl text-gray-600 dark:text-gray-400" />
                 <div
                   className="w-4 h-4 text-white rounded-full absolute
@@ -165,6 +158,10 @@ const Navbar = ({ handleOrderPopup, setShowLogin }) => {
           </div>
         </div>
       </div>
+      <Routes>
+        <Route path="/shop" element={<Cart />} />
+        <Route path="/" element={<Home />} />
+      </Routes>
     </div>
   );
 };

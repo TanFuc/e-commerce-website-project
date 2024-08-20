@@ -1,25 +1,34 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Cart.css";
-import { ProductsData } from "../Products/Products.jsx";
-import { Link } from "react-router-dom";
+// import * as Products from "../Products/Products";
 
 const Cart = () => {
-  const { cartItems, food_list, removeFromCart } = useContext(ProductsData);
-  return;
-  <div className="cart">
-    <div className="cart-items">
-      <div className="cart-items-title">
-        <p>Items</p>
-        <p>Title</p>
-        <p>Price</p>
-        <p>Quantily</p>
-        <p>Total</p>
-        <p>Remove</p>
-      </div>
-      <br />
-      <hr />
-    </div>
-  </div>;
+  return <div>abc</div>;
 };
+
+// const Cart = () => {
+//   const { cartItems, food_list, removeFromCart } = useContext(Products);
+//   return (
+//     <div className="cart">
+//       <div className="cart-items">
+//         <div className="cart-items-title">
+//           <p>Items</p>
+//           <p>Title</p>
+//           <p>Price</p>
+//           <p>Quantily</p>
+//           <p>Total</p>
+//           <p>Remove</p>
+//         </div>
+//         <br />
+//         <hr />
+//         {food_list.map((item, index) => {
+//           if (cartItems[item.id] > 0) {
+//             return <div className="cart-items-title cart-items-item"></div>;
+//           }
+//         })}
+//       </div>
+//     </div>
+//   );
+// };
 
 export default Cart;
