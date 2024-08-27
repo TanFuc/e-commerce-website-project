@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import ProductsCard from "./ProductsCard";
 
 function ShoppingCart() {
   const [cartVisible, setCartVisible] = useState(false);
