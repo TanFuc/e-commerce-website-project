@@ -9,6 +9,12 @@ import PropTypes from "prop-types";
 import Cart from "../Cart/Cart";
 import Home from "../Home/Home";
 import MiniCart from "../MiniCart/MiniCart";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton,
+} from "@clerk/clerk-react";
 
 const MenuLinks = [
   { id: 1, name: "Home", link: "/" },
@@ -148,7 +154,7 @@ const Navbar = ({ handleOrderPopup, handleLoginPopup }) => {
             {/* Login */}
             <div>
               <button className="relative p-1" onClick={handleLoginPopup}>
-                <IoLogIn className="text-xl text-gray-600 dark:text-gray-400" />
+                {/* <IoLogIn className="text-xl text-gray-600 dark:text-gray-400" /> */}
                 <div
                   className="w-4 h-4 text-white rounded-full absolute
             top-0 right-0 flex items-center justify-center text-xs"

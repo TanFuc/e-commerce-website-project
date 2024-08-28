@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { IoCloseOutline } from "react-icons/io5";
 import Button from "../../../src/components/Shared/Button.jsx";
+import { ClerkProvider } from "@clerk/clerk-react";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton,
+} from "@clerk/clerk-react";
 
 const LoginPopup = ({ orderLoginPopup, setLoginPopup, handleLoginPopup }) => {
   const [currState, setCurrState] = useState("Sign Up");
