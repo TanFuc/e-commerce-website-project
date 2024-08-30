@@ -32,7 +32,7 @@ const Footer = () => {
               className="text-primary font-semibold tracking-widest text-2xl uppercase 
               sm:text-3xl"
             >
-              LEOSHOP
+              Fuhi 
             </a>
             <p className="text-gray-600 dark:text-white/70 lg:pr-24 pt-3">Beer is true love.</p>
             <p className="text-gray-500 mt-4">Made with love by Beer</p>
